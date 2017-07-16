@@ -9,7 +9,6 @@ import java.util.HashSet;
 public class ApiResource extends Resource {
 
     private Collection<Secret> apiSecrets = new HashSet<>();
-    // An API must have at least one scope. Each scope can have different settings.
     private Collection<Scope> scopes = new HashSet<>();
 
     public ApiResource() {
@@ -33,23 +32,20 @@ public class ApiResource extends Resource {
 
         this.scopes.add(new Scope(name, displayName));
 
-        if (!claimTypes.IsNullOrEmpty()) {
-            foreach(var type in claimTypes)
-            {
-                UserClaims.Add(type);
+        if (!claimTypes.isEmpty()) {
+            for (String type : claimTypes) {
+                UserClaims.add(type);
             }
         }
     }
 
     public ApiResource CloneWithScopes(Collection<Scope> scopes) {
-        return new ApiResource
-        {
-            Enabled = Enabled,
-                    Name = Name,
-                    ApiSecrets = ApiSecrets,
-                    Scopes = new HashSet<Scope>(scopes.ToArray()),
-                    UserClaims = UserClaims
-        } ;
+
+        ApiResource clone =  new ApiResource(this.name, this.name, this.UserClaims);
+        clone.setApiSecrets(this.apiSecrets);
+        clone.setScopes(scopes);
+        clone.setEnabled(this.enabled);
+        return clone;
     }
 
     public Collection<Secret> getApiSecrets() {
