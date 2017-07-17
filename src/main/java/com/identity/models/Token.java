@@ -1,12 +1,13 @@
 package com.identity.models;
 
-import com.auth0.jwt.interfaces.Claim;
 import com.identity.Infrastructure.IdentityServerDateTime;
 import com.identity.models.enums.AccessTokenType;
 
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 /**
  * Created by zhangpengcheng on 17/7/12.
@@ -105,7 +106,10 @@ public class Token {
     /// <value>
     /// The subject identifier.
     /// </value>
-    public String SubjectId = Claims.Where(x => x.Type == JwtClaimTypes.Subject).Select(x => x.Value).SingleOrDefault();
+    public String SubjectId = Claims.stream()
+            .filter(x -> x.getType().equals("Subject"))
+            .map(x -> x.getValue()).findFirst().orElse(null);
+
 
     /// <summary>
     /// Gets the scopes.
@@ -113,5 +117,7 @@ public class Token {
     /// <value>
     /// The scopes.
     /// </value>
-    public Collection<String> Scopes = Claims.Where(x => x.Type == JwtClaimTypes.Scope).Select(x => x.Value);
+    public Collection<String> Scopes = Claims.stream()
+            .filter(x -> x.getType().equals("Scope"))
+            .map(x -> x.getValue()).collect(Collectors.toList());
 }
