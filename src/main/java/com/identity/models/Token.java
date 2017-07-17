@@ -64,7 +64,7 @@ public class Token {
     /// <value>
     /// The type.
     /// </value>
-    public String Type ; = OidcConstants.TokenTypes.AccessToken;
+    public String Type  = OidcConstants.TokenTypes.AccessToken;
 
     /// <summary>
     /// Gets or sets the ID of the client.
