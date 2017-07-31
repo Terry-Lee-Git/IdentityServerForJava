@@ -7,6 +7,7 @@ import com.identity.services.interfaces.IEventService;
 import com.identity.services.interfaces.IUserSession;
 import com.identity.stores.IConsentMessageStore;
 import com.identity.validation.interfaces.IAuthorizeRequestValidator;
+import com.identity.validation.models.AuthorizeRequestValidationResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,17 +54,20 @@ public class AuthorizeController {
 
     @GetMapping("")
     @ResponseBody
-    public String view(Map<String, Object> context) throws Exception {
+    public String view(Map<String, String> parameters) throws Exception {
 
-        CompletableFuture<ClaimsPrincipal> userFuture = _userSession.GetIdentityServerUserAsync();
-        CompletableFuture.allOf(userFuture).join();
-        ClaimsPrincipal user = userFuture.get();
+        CompletableFuture<AuthorizeRequestValidationResult> result = _validator.validateAsync(parameters);
+
         return "hello world";
     }
 
     @PostMapping("")
     @ResponseBody
-    public String authorize(Map<String, Object> context) {
+    public String authorize(Map<String, String> parameters) throws Exception {
+
+        CompletableFuture<ClaimsPrincipal> userFuture = _userSession.GetIdentityServerUserAsync();
+        CompletableFuture.allOf(userFuture).join();
+        ClaimsPrincipal user = userFuture.get();
 
         return "hello world";
     }
