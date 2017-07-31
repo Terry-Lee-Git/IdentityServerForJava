@@ -45,7 +45,7 @@ public class AuthorizeRequestValidator implements IAuthorizeRequestValidator {
 
     private AuthorizeRequestValidationResult validateClient(String clientId){
         if(isMissingOrTooLong(clientId, options.InputLengthRestrictions.ClientId))
-            return false;
+            return new AuthorizeRequestValidationResult(OidcConstants.AuthorizeErrors.InvalidRequest, "client id is missing or too long");
     }
 
     private boolean isMissingOrTooLong(String value, int length){

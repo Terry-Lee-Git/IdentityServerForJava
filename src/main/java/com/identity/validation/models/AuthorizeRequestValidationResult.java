@@ -5,22 +5,22 @@ package com.identity.validation.models;
  */
 public class AuthorizeRequestValidationResult extends ValidationResult{
 
-//    public AuthorizeRequestValidationResult(ValidatedAuthorizeRequest request)
-//    {
-//        ValidatedRequest = request;
-//        isError = false;
-//    }
-//
-//
-//    public AuthorizeRequestValidationResult(ValidatedAuthorizeRequest request, string error, string errorDescription = null)
-//    {
-//        ValidatedRequest = request;
-//        isError = true;
-//        error = error;
-//        errorDescription = errorDescription;
-//    }
-//
-//
-//    public ValidatedAuthorizeRequest validatedRequest;
+
+    public AuthorizeRequestValidationResult()
+    {
+        isError = false;
+    }
+
+
+    public AuthorizeRequestValidationResult(String error, String errorDescription)
+    {
+
+        isError = true;
+        this.error = error;
+        this.errorDescription = errorDescription;
+    }
+
+
+    //public ValidatedAuthorizeRequest validatedRequest;
 
 }
