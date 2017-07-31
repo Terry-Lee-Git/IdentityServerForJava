@@ -2,6 +2,7 @@ package com.identity.models;
 
 import com.identity.Infrastructure.IdentityServerDateTime;
 import com.identity.models.enums.AccessTokenType;
+import org.springframework.boot.autoconfigure.security.oauth2.resource.ResourceServerProperties;
 
 import java.util.Collection;
 import java.util.Date;
@@ -107,7 +108,7 @@ public class Token {
     /// The subject identifier.
     /// </value>
     public String SubjectId = Claims.stream()
-            .filter(x -> x.getType().equals("Subject"))
+            .filter(x -> x.getType().equals(JwtClaimTypes.Subject))
             .map(x -> x.getValue()).findFirst().orElse(null);
 
 
@@ -118,6 +119,6 @@ public class Token {
     /// The scopes.
     /// </value>
     public Collection<String> Scopes = Claims.stream()
-            .filter(x -> x.getType().equals("Scope"))
+            .filter(x -> x.getType().equals(JwtClaimTypes.Scope))
             .map(x -> x.getValue()).collect(Collectors.toList());
 }

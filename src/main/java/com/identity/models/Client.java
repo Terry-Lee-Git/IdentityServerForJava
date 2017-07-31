@@ -1,6 +1,6 @@
 package com.identity.models;
 
-import com.auth0.jwt.interfaces.Claim;
+
 import com.identity.IdentityServerConstants;
 import com.identity.models.enums.AccessTokenType;
 import com.identity.models.enums.TokenExpiration;
