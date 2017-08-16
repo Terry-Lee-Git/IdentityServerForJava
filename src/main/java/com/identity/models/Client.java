@@ -14,17 +14,17 @@ import java.util.*;
 public class Client {
 
     // setting grant types should be atomic
-    private Collection<String> allowedGrantTypes = GrantTypes.Implicit;
+    public Collection<String> allowedGrantTypes = GrantTypes.Implicit;
 
     /// <summary>
     /// Specifies if client is enabled (defaults to true)
     /// </summary>
-    public boolean Enabled  = true;
+    public boolean enabled  = true;
 
     /// <summary>
     /// Unique ID of the client
     /// </summary>
-    public String ClientId ;
+    public String clientId ;
 
     /// <summary>
     /// Gets or sets the protocol type.
@@ -32,53 +32,53 @@ public class Client {
     /// <value>
     /// The protocol type.
     /// </value>
-    public String ProtocolType  = IdentityServerConstants.ProtocolTypes.OpenIdConnect;
+    public String protocolType  = IdentityServerConstants.ProtocolTypes.OpenIdConnect;
 
     /// <summary>
     /// Client secrets - only relevant for flows that require a secret
     /// </summary>
-    public Collection<Secret> ClientSecrets  = new HashSet<>();
+    public Collection<Secret> clientSecrets  = new HashSet<>();
 
     /// <summary>
     /// If set to false, no client secret is needed to request tokens at the token endpoint (defaults to true)
     /// </summary>
-    public boolean RequireClientSecret  = true;
+    public boolean requireClientSecret  = true;
 
     /// <summary>
     /// Client display name (used for logging and consent screen)
     /// </summary>
-    public String ClientName ;
+    public String clientName ;
 
     /// <summary>
     /// URI to further information about client (used on consent screen)
     /// </summary>
-    public String ClientUri ;
+    public String clientUri ;
 
     /// <summary>
     /// URI to client logo (used on consent screen)
     /// </summary>
-    public String LogoUri ;
+    public String logoUri ;
 
     /// <summary>
     /// Specifies whether a consent screen is required (defaults to true)
     /// </summary>
-    public boolean RequireConsent  = true;
+    public boolean requireConsent  = true;
 
     /// <summary>
     /// Specifies whether user can choose to store consent decisions (defaults to true)
     /// </summary>
-    public boolean AllowRememberConsent  = true;
+    public boolean allowRememberConsent  = true;
 
 
     /// <summary>
     /// Specifies whether a proof key is required for authorization code based token requests
     /// </summary>
-    public boolean RequirePkce = false;
+    public boolean requirePkce = false;
 
     /// <summary>
     /// Specifies whether a proof key can be sent using plain method (not recommended and default to false)
     /// </summary>
-    public boolean AllowPlainTextPkce = false;
+    public boolean allowPlainTextPkce = false;
 
     /// <summary>
     /// Controls whether access tokens are transmitted via the browser for this client (defaults to false).
@@ -87,47 +87,47 @@ public class Client {
     /// <value>
     /// <c>true</c> if access tokens can be transmitted via the browser; otherwise, <c>false</c>.
     /// </value>
-    public boolean AllowAccessTokensViaBrowser = false;
+    public boolean allowAccessTokensViaBrowser = false;
 
     /// <summary>
     /// Specifies allowed URIs to return tokens or authorization codes to
     /// </summary>
-    public Collection<String> RedirectUris = new HashSet<>();
+    public Collection<String> redirectUris = new HashSet<>();
 
     /// <summary>
     /// Specifies allowed URIs to redirect to after logout
     /// </summary>
-    public Collection<String> PostLogoutRedirectUris = new HashSet<String>();
+    public Collection<String> postLogoutRedirectUris = new HashSet<String>();
 
     /// <summary>
     /// Specifies logout URI at client for HTTP front-channel based logout.
     /// </summary>
-    public String FrontChannelLogoutUri;
+    public String frontChannelLogoutUri;
 
     /// <summary>
     /// Specifies is the user's session id should be sent to the FrontChannelLogoutUri. Defaults to true.
     /// </summary>
-    public boolean FrontChannelLogoutSessionRequired = true;
+    public boolean frontChannelLogoutSessionRequired = true;
 
     /// <summary>
     /// Specifies logout URI at client for HTTP back-channel based logout.
     /// </summary>
-    public String BackChannelLogoutUri;
+    public String backChannelLogoutUri;
 
     /// <summary>
     /// Specifies is the user's session id should be sent to the BackChannelLogoutUri. Defaults to true.
     /// </summary>
-    public boolean BackChannelLogoutSessionRequired = true;
+    public boolean backChannelLogoutSessionRequired = true;
 
     /// <summary>
     /// Gets or sets a value indicating whether [allow offline access].
     /// </summary>
-    public boolean AllowOfflineAccess = false;
+    public boolean allowOfflineAccess = false;
 
     /// <summary>
     /// Specifies the api scopes that the client is allowed to request. If empty, the client can't access any scope
     /// </summary>
-    public Collection<String> AllowedScopes = new HashSet<String>();
+    public Collection<String> allowedScopes = new HashSet<String>();
 
     /// <summary>
     /// When requesting both an id token and access token, should the user claims always be added to the id token instead of requring the client to use the userinfo endpoint.

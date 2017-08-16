@@ -11,7 +11,7 @@ import java.util.concurrent.CompletableFuture;
  */
 public interface IAuthorizeRequestValidator {
 
-    CompletableFuture<AuthorizeRequestValidationResult> validateAsync(Map<String, String> parameters, ClaimsPrincipal subject);
+    AuthorizeRequestValidationResult validate(Map<String, String> parameters, ClaimsPrincipal subject);
 
-    CompletableFuture<AuthorizeRequestValidationResult> validateAsync(Map<String, String> parameters);
+    AuthorizeRequestValidationResult validate(Map<String, String> parameters);
 }
